@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Some specific utilities for the configuration
+local helpers = require("helpers")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -43,13 +45,21 @@ do
 end
 -- }}}
 
--- {{{Startup programs
---awful.spawn.with_shell("mpd")
+-- {{{ Startup programs
+-- Restore default keyboard layout
+helpers.keyboard_layout(0)
+-- Spawn some useful programs
+awful.spawn.with_shell("mpd")
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- Try to load the local theme.
+local theme = "nord"
+local theme_dir = os.getenv("HOME") .. "/.config/awesome/themes/" .. theme .. "/"
+
+if not beautiful.init(theme_dir .. "theme.lua") then
+    beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua") -- a known good fallback
+end
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -148,17 +158,13 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-beautiful.taglist_font = "Fira Sans"
-
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "ﱘ", "爵", "", "﬏", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -171,7 +177,26 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
+        widget_template = {
+            {
+                {
+                    {
+                       id     = "text_role",
+                       widget = wibox.widget.textbox,
+                       forced_width = 18,
+                       forced_height = 18,
+                       align = "center"
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 6,
+                right = 8,
+                widget = wibox.container.margin
+            },
+            id     = "background_role",
+            widget = wibox.container.background,
+        }
     }
 
     -- Create a tasklist widget
@@ -184,19 +209,15 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar {
         screen = s,
-        bg="#2e3440",
-        height=26,
+        --bg="#844444",
+        height=30,
         x=200
     }
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            s.mytaglist,
-            s.mypromptbox,
-        },
+        s.mytaglist,
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,

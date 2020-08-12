@@ -2,6 +2,29 @@ local awful = require("awful")
 local naughty = require("naughty")
 
 local helpers = {}
+local layouts = {
+    "fr",
+    "ru"
+}
+
+current_layout = 1
+
+-- Change the current keyboard layout by some increment
+-- Please note that the value passed is AN INCREMENT
+-- not the layout number to load.
+helpers.keyboard_layout = function(step)
+    current_layout = current_layout + step
+
+    if current_layout > #layouts then
+        current_layout = 1
+    else
+        if current_layout < 1 then
+            current_layout = #layouts
+        end
+    end
+
+    awful.spawn.with_shell("setxkbmap "..layouts[current_layout])
+end
 
 -- Volume control using ALSA
 -- Pass a value between -100 and +100
