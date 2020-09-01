@@ -46,6 +46,8 @@ end
 -- }}}
 
 -- {{{ Startup programs
+local ears = require("ears")
+
 -- Restore default keyboard layout
 helpers.keyboard_layout(0)
 -- Spawn some useful programs
@@ -99,7 +101,8 @@ awful.layout.layouts = {
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+text_clock = wibox.widget.textclock("%H:%M")
+battery_bar = require("modules/battery")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -223,7 +226,8 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
-            mytextclock,
+            battery_bar,
+            text_clock,
             s.mylayoutbox,
         },
     }

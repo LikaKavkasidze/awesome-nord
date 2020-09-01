@@ -93,4 +93,10 @@ helpers.brightness_control = function(step)
     awful.spawn.with_shell(cmd)
 end
 
+helpers.icon_scale = function(scale, max, value)
+    local index = math.floor((value / max) * #scale)
+
+    return scale[index]
+end
+
 return helpers
