@@ -103,6 +103,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 text_clock = wibox.widget.textclock("%H:%M")
 battery_bar = require("modules/battery")
+cpu_text = require("modules/cpu")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -226,6 +227,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+            cpu_text,
             battery_bar,
             text_clock,
             s.mylayoutbox,
