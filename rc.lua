@@ -50,8 +50,10 @@ local ears = require("ears")
 
 -- Restore default keyboard layout
 helpers.keyboard_layout(0)
--- Spawn some useful programs
+-- Spawn music daemon
 awful.spawn.with_shell("mpd")
+-- Enable auto-screensaving
+awful.spawn.with_shell('xss-lock /usr/bin/sflock -- -f "-misc-fixed-medium-r-semicondensed--0-0-75-75-c-0-iso8859-1" -c "StealMyPass?word?"')
 -- }}}
 
 -- {{{ Variable definitions
@@ -79,20 +81,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -325,7 +314,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c) : setup {
+    awful.titlebar(c, { size=20 }) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -340,11 +329,9 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.minimizebutton    (c),
+            awful.titlebar.widget.maximizedbutton   (c),
+            awful.titlebar.widget.closebutton       (c),
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
