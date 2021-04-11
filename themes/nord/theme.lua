@@ -86,8 +86,8 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."nord/titlebar/close_normal.svg"
-theme.titlebar_close_button_focus  = themes_path.."nord/titlebar/close_normal.svg"
+theme.titlebar_close_button_normal = themes_path.."nord/titlebar/close_normal_flower.svg"
+theme.titlebar_close_button_focus  = themes_path.."nord/titlebar/close_normal_flower.svg"
 
 theme.titlebar_minimize_button_normal = themes_path.."nord/titlebar/minimize_normal.svg"
 theme.titlebar_minimize_button_focus  = themes_path.."nord/titlebar/minimize_normal.svg"

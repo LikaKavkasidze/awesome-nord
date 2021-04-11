@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="28"
-   height="28"
-   viewBox="0 0 7.4083331 7.4083335"
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666664 8.4666669"
    version="1.1"
    id="svg1406"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
@@ -26,7 +26,7 @@
      inkscape:zoom="11.2"
      inkscape:cx="19.828502"
      inkscape:cy="28.267954"
-     inkscape:document-units="mm"
+     inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
@@ -58,10 +58,10 @@
      id="layer1"
      transform="translate(1.0583333,1.0583333)">
     <circle
-       style="fill:#ebcb8b;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#ebcb8b;fill-opacity:1;stroke:none;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        id="path1969"
-       cx="2.6458333"
-       cy="2.6458333"
-       r="2.1166666" />
+       cx="3.175"
+       cy="3.175"
+       r="2.6458333" />
   </g>
 </svg>
