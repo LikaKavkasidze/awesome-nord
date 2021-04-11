@@ -108,12 +108,25 @@ globalkeys = gears.table.join(
         end,
         {description = "select previous layout", group = "keyboard"}),
 
+    -- Power function
+    awful.key({ modkey, "Shift"   }, "p",
+    function()
+        awful.spawn.with_shell("shutdown now")
+    end,
+    {description = "turn off the computer", group = "power"}),
+
+    awful.key({ modkey, "Shift"   }, "s",
+    function()
+        awful.spawn.with_shell("systemctl suspend")
+    end,
+    {description = "suspend the computer", group = "power"}),
+
     -- Special keys
     awful.key({ }, "XF86AudioMute",
         function()
             helpers.volume_control(0)
         end,
-        {description = "(un)mute volume", group = "volume"}),
+        {description = "(un)mute headphones", group = "volume"}),
     awful.key({ }, "XF86AudioLowerVolume",
         function()
             helpers.volume_control(-5)
@@ -124,7 +137,11 @@ globalkeys = gears.table.join(
             helpers.volume_control(5)
         end,
         {description = "raise volume", group = "volume"}),
-
+    awful.key({ }, "XF86AudioMicMute",
+        function()
+            helpers.mute_microphone()
+        end,
+        {description = "(un)mute microphone", group = "volume"}),
     awful.key({ }, "XF86MonBrightnessDown",
         function()
             helpers.brightness_control(-5)
@@ -134,7 +151,12 @@ globalkeys = gears.table.join(
         function()
             helpers.brightness_control(5)
         end,
-        {description = "increase brightness", group = "brightness"})
+        {description = "increase brightness", group = "brightness"}),
+    awful.key({ }, "XF86Explorer",
+        function()
+            helpers.auto_screen()
+        end,
+        {description = "automatically configure screens", group = "display"})
 )
 
 clientkeys = gears.table.join(

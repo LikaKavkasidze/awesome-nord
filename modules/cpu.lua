@@ -13,7 +13,9 @@ local cpu_text = {
 }
 
 awesome.connect_signal("ears::cpu_t", function(value)
-    cpu_text[2].text = value.." °C"
+    if not (value == nil) then
+        cpu_text[2].text = value.." °C"
+    end
 end)
 
 return cpu_text

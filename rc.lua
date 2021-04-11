@@ -48,12 +48,13 @@ end
 -- {{{ Startup programs
 local ears = require("ears")
 
--- Restore default keyboard layout
 helpers.keyboard_layout(0)
+helpers.auto_screen()
+
 -- Spawn music daemon
 awful.spawn.with_shell("mpd")
 -- Enable auto-screensaving
-awful.spawn.with_shell('xss-lock /usr/bin/sflock -- -f "-misc-fixed-medium-r-semicondensed--0-0-75-75-c-0-iso8859-1" -c "StealMyPass?word?"')
+awful.spawn.with_shell('xss-lock /usr/bin/sflock -- -f "-misc-fixed-medium-r-semicondensed--0-0-75-75-c-0-iso8859-1" -c "LetsEatGrandma"')
 -- }}}
 
 -- {{{ Variable definitions
@@ -134,8 +135,6 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-beautiful.wallpaper = "/home/zaphod/Images/Wallpapers/Nordic1.jpg"
-
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -156,7 +155,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "", "ﱘ", "爵", "", "﬏", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "", "ﱘ", "爵", "", "﬏", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
