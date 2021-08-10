@@ -89,14 +89,20 @@ globalkeys = gears.table.join(
     end,
               {description = "run rofi prompt", group = "launcher"}),
 
-    awful.key({ modkey },   "c", function () awful.util.spawn("rofi -show calc -modi calc -no-sort -no-history")
+    awful.key({ modkey },   "c", function () awful.util.spawn("rofi -show calc -modi calc -no-sort")
     end,
               {description = "rofi calculator prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey },   "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- Language switched
+    awful.key({ modkey },   "w",
+        function()
+            awful.util.spawn("alacritty -e 'ncmpcpp'")
+        end,
+    {description = "run NCMPCPP", group = "launcher"}),
+
+    -- Language layouts switch
     awful.key({ modkey,           }, "space",
         function()
             helpers.keyboard_layout(1)
